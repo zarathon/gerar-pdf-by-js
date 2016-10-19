@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>Teste PDF</title>
+<!-- CORE CSS-->
+<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection">
+<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection">
+</head>
+  <body>
+    <div id="content">
+      <h1>Mussum Ipsum - Gerar PDF</h1>
+      <p>Mussum Ipsum, cacilds vidis litro abertis. Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. Sed non consequat odio. Manduma pindureta quium dia nois paga. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis. Suco de cevadiss deixa as pessoas mais interessantiss.</p>
+      <p>Suco de cevadiss, é um leite divinis, qui tem lupuliz, matis, aguis e fermentis. Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. Sed non consequat odio. Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. Si num tem leite então bota uma pinga aí cumpadi!</p>
+    </div>
+
+    <a id="naoAparecer" href="#" onclick="gerarPdf()" class="btn btn-flat">Gerar PDF</a>
+
+
+
+
+
+    <!-- jQuery Library -->
+    <script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+    <!--jspdf js-->
+    <script type="text/javascript" src="js/jspdf.js"></script>
+
+    <script type="text/javascript">
+      function gerarPdf(){
+        var doc = new jsPDF();
+
+        // We'll make our own renderer to skip this editor
+        var specialElementHandlers = {
+        '#naoAparecer': function(element, renderer){
+          return true;
+        }
+        };
+
+        // All units are in the set measurement for the document
+        // This can be changed to "pt" (points), "mm" (Default), "cm", "in"
+        doc.fromHTML($('body').get(0), 15, 15, {
+        'width': 170,
+        'elementHandlers': specialElementHandlers
+        });
+
+        doc.save('Relatorio.pdf');
+      }
+    </script>
+  </body>
+</html>
